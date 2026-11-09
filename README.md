@@ -10,7 +10,7 @@ connection. One session, one transaction and one table handle stay open across
 the whole sweep, which is what makes the comparison a per-query change rather
 than a reconnect.
 
-Verified on 2026-11-09 against a six-CNode VAST cluster, table
+Verified on 2026-11-09 against a three-CNode VAST cluster, table
 `analytics/bench/events`: 60 columns, 10,000,000 rows. Bucket, table and
 endpoint names throughout this file are placeholders. The timings are real.
 
@@ -107,9 +107,10 @@ at 32.
 
 Read those numbers as the mechanism working, not as tuning advice. Client CPU
 time tracks wall time closely in every row, so this client was the bottleneck,
-not the cluster: one host, six data endpoints, one query at a time. Splits exist
-to parallelize scans across many CNodes and many readers. Measure the split
-count on your own client and cluster before fixing a value.
+not the cluster: one host, six data endpoint VIPs across three CNodes, one
+query at a time. Splits exist to parallelize scans across many CNodes and many
+readers. Measure the split count on your own client and cluster before fixing a
+value.
 
 ## Files
 
