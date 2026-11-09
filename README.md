@@ -134,3 +134,7 @@ name and every read returns `NoSuchKey`.
 concurrency.")` on every query, which reaches stderr through logging's
 `lastResort` handler. The script silences it with
 `logging.getLogger("vastdb").setLevel(logging.ERROR)`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
